@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 
 @Module({
   imports: [
@@ -13,6 +15,23 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        // CHECK IF YOU GET WHAT IS EXPECTED
+        console.log('ENV VAR', configService.get('DATABASE_URL'));
+
+        const options: MongooseModuleOptions = {
+          uri: configService.get<string>('DATABASE_URL'),
+        };
+
+        return options;
+      },
+    }),
+    ConfigModule.forRoot({
+      cache: true,
     }),
   ],
   controllers: [],
