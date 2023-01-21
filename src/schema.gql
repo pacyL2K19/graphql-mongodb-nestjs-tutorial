@@ -10,18 +10,36 @@ type User {
   address: String!
 }
 
+type Book {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+type Author {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   getHello: String!
   users: [User!]!
 
   """This will be like getting the user profile by his id"""
   userById(id: Int!): User!
+  book(id: Int!): Book!
+  author(id: Int!): Author!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: Int!): User!
+  createBook(createBookInput: CreateBookInput!): Book!
+  updateBook(updateBookInput: UpdateBookInput!): Book!
+  removeBook(id: Int!): Book!
+  createAuthor(createAuthorInput: CreateAuthorInput!): Author!
+  updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
+  removeAuthor(id: Int!): Author!
 }
 
 input CreateUserInput {
@@ -37,4 +55,26 @@ input UpdateUserInput {
   password: String
   address: String!
   _id: String!
+}
+
+input CreateBookInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateBookInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateAuthorInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateAuthorInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }

@@ -8,6 +8,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from 'apollo-server-core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
+import { BookModule } from './book/book.module';
+import { AuthorModule } from './author/author.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { UserModule } from './user/user.module';
       cache: true,
     }),
     UserModule,
+    BookModule,
+    AuthorModule,
   ],
   controllers: [],
   providers: [AppService, AppResolver],
