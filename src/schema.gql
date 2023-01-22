@@ -2,22 +2,40 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  _id: String!
+  name: String!
+  books: [Book!]!
+}
+
+type GetAuthorsPaginatedResponse {
+  authors: [Author!]!
+  authorsCount: Int!
+}
+
+type Book {
+  _id: String!
+  title: String!
+  description: String!
+  price: Float!
+  coverImage: String!
+  isbn: String!
+  author: Author!
+  readers: [User!]!
+}
+
+type GetBooksPaginatedResponse {
+  books: [Book!]!
+  booksCount: Int!
+}
+
 type User {
   _id: String!
   name: String!
   email: String!
   password: String!
   address: String!
-}
-
-type Book {
-  """Example field (placeholder)"""
-  exampleField: Int!
-}
-
-type Author {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  books: [Book!]!
 }
 
 type Query {
@@ -25,9 +43,11 @@ type Query {
   users: [User!]!
 
   """This will be like getting the user profile by his id"""
-  userById(id: Int!): User!
-  book(id: Int!): Book!
-  author(id: Int!): Author!
+  userById(id: String!): User!
+  books(limit: Int = 10, skip: Int = 0): GetBooksPaginatedResponse!
+  book(limit: Int = 10, skip: Int = 0, _id: String!): Book!
+  allAuthors(limit: Int = 10, skip: Int = 0): GetAuthorsPaginatedResponse!
+  author(id: String!): Author!
 }
 
 type Mutation {
@@ -36,10 +56,10 @@ type Mutation {
   removeUser(id: Int!): User!
   createBook(createBookInput: CreateBookInput!): Book!
   updateBook(updateBookInput: UpdateBookInput!): Book!
-  removeBook(id: Int!): Book!
+  removeBook(id: String!): Book!
   createAuthor(createAuthorInput: CreateAuthorInput!): Author!
   updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
-  removeAuthor(id: Int!): Author!
+  removeAuthor(id: String!): Author!
 }
 
 input CreateUserInput {
@@ -50,31 +70,37 @@ input CreateUserInput {
 }
 
 input UpdateUserInput {
-  name: String!
-  email: String!
+  name: String
+  email: String
   password: String
-  address: String!
+  address: String
   _id: String!
 }
 
 input CreateBookInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  title: String!
+  description: String!
+  price: Float!
+  coverImage: String!
+  isbn: String!
+  author: String!
 }
 
 input UpdateBookInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  title: String
+  description: String
+  price: Float
+  coverImage: String
+  isbn: String
+  author: String
+  _id: String!
 }
 
 input CreateAuthorInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
 }
 
 input UpdateAuthorInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String
+  _id: String!
 }

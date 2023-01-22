@@ -6,14 +6,4 @@ import { Schema as MongooSchema } from 'mongoose';
 export class UpdateUserInput extends PartialType(CreateUserInput) {
   @Field(() => String)
   _id: MongooSchema.Types.ObjectId;
-
-  // Add user properties
-  @Field(() => String)
-  name?: string;
-
-  @Field(() => String)
-  email?: string;
-
-  @Field(() => String)
-  address?: string;
 }

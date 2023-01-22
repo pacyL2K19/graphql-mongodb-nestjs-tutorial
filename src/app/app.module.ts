@@ -10,6 +10,7 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { BookModule } from './book/book.module';
 import { AuthorModule } from './author/author.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { AuthorModule } from './author/author.module';
     UserModule,
     BookModule,
     AuthorModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [AppService, AppResolver],

@@ -1,8 +1,9 @@
 import { CreateBookInput } from './create-book.input';
-import { InputType, Field, Int, PartialType } from '@nestjs/graphql';
+import { InputType, Field, PartialType } from '@nestjs/graphql';
+import { Schema as MongooSchema } from 'mongoose';
 
 @InputType()
 export class UpdateBookInput extends PartialType(CreateBookInput) {
-  @Field(() => Int)
-  id: number;
+  @Field(() => String)
+  _id: MongooSchema.Types.ObjectId;
 }

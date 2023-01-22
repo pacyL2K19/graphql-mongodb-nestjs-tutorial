@@ -1,26 +1,61 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, Schema as MongooSchema } from 'mongoose';
 import { CreateBookInput } from './dto/create-book.input';
 import { UpdateBookInput } from './dto/update-book.input';
+import { Book, BookDocument } from './entities/book.entity';
 
 @Injectable()
 export class BookService {
-  create(createBookInput: CreateBookInput) {
-    return 'This action adds a new book';
+  constructor(
+    @InjectModel(Book.name)
+    private bookModel: Model<BookDocument>,
+  ) {}
+
+  createBook(createBookInput: CreateBookInput) {
+    const createdBook = new this.bookModel(createBookInput);
+    return createdBook.save();
   }
 
-  findAll() {
-    return `This action returns all book`;
+  async findAllBooks(limit: number, skip: number) {
+    const booksCount = await this.bookModel.countDocuments();
+    const books = await this.bookModel
+      .find()
+      .populate('author')
+      .skip(skip)
+      .limit(limit);
+
+    return {
+      books,
+      booksCount,
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} book`;
+  getBookById(
+    id: MongooSchema.Types.ObjectId,
+    readersSkip: number,
+    readersLimit: number,
+  ) {
+    return this.bookModel
+      .findById(id)
+      .populate('author')
+      .populate({
+        path: 'readers',
+        options: {
+          limit: readersLimit,
+          skip: readersSkip,
+        },
+      });
   }
 
-  update(id: number, updateBookInput: UpdateBookInput) {
-    return `This action updates a #${id} book`;
+  updateBook(
+    id: MongooSchema.Types.ObjectId,
+    updateBookInput: UpdateBookInput,
+  ) {
+    return this.bookModel.findByIdAndUpdate(id, updateBookInput);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} book`;
+  removeBook(id: MongooSchema.Types.ObjectId) {
+    return this.bookModel.deleteOne({ _id: id });
   }
 }
