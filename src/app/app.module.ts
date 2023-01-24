@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { BookModule } from './book/book.module';
 import { AuthorModule } from './author/author.module';
 import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { CommonModule } from './common/common.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
+      cors: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -38,8 +40,8 @@ import { CommonModule } from './common/common.module';
     BookModule,
     AuthorModule,
     CommonModule,
+    AuthModule,
   ],
-  controllers: [],
   providers: [AppService, AppResolver],
 })
 export class AppModule {}

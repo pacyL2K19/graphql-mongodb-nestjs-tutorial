@@ -31,5 +31,14 @@ export class User {
   books: Book[];
 }
 
+@ObjectType()
+export class LoginUserResponseR {
+  @Field(() => User)
+  user: User;
+
+  @Field(() => String)
+  authToken: string;
+}
+
 export type UserDocument = User & Document;
 export const UserSchema = SchemaFactory.createForClass(User);
