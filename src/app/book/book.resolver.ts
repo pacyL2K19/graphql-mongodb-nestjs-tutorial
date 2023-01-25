@@ -32,11 +32,13 @@ export class BookResolver {
   }
 
   @Mutation(() => Book)
+  @UseGuards(JwtAuthGuard)
   updateBook(@Args('updateBookInput') updateBookInput: UpdateBookInput) {
     return this.bookService.updateBook(updateBookInput._id, updateBookInput);
   }
 
   @Mutation(() => Book)
+  @UseGuards(JwtAuthGuard)
   removeBook(
     @Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId,
   ) {

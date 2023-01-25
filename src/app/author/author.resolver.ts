@@ -5,12 +5,15 @@ import { CreateAuthorInput } from './dto/create-author.input';
 import { UpdateAuthorInput } from './dto/update-author.input';
 import { Schema as MongooSchema } from 'mongoose';
 import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
+import { JwtAuthGuard } from '../auth/jwt-auth.gards';
+import { UseGuards } from '@nestjs/common';
 
 @Resolver(() => Author)
 export class AuthorResolver {
   constructor(private readonly authorService: AuthorService) {}
 
   @Mutation(() => Author)
+  @UseGuards(JwtAuthGuard)
   createAuthor(
     @Args('createAuthorInput') createAuthorInput: CreateAuthorInput,
   ) {
@@ -31,6 +34,7 @@ export class AuthorResolver {
   }
 
   @Mutation(() => Author)
+  @UseGuards(JwtAuthGuard)
   updateAuthor(
     @Args('updateAuthorInput') updateAuthorInput: UpdateAuthorInput,
   ) {
@@ -41,6 +45,7 @@ export class AuthorResolver {
   }
 
   @Mutation(() => Author)
+  @UseGuards(JwtAuthGuard)
   removeAuthor(
     @Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId,
   ) {
