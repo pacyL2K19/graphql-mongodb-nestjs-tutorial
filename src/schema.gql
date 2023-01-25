@@ -38,11 +38,6 @@ type User {
   books: [Book!]!
 }
 
-type LoginUserResponseR {
-  user: User!
-  authToken: String!
-}
-
 type LoginUserResponse {
   user: User!
   authToken: String!
@@ -54,18 +49,10 @@ type Query {
 
   """This will be like getting the user profile by his id"""
   userById(id: String!): User!
-
-  """This query will help authenticate users"""
-  loginUser(loginUserInput: LoginUserInput!): LoginUserResponseR!
   books(limit: Int = 10, skip: Int = 0): GetBooksPaginatedResponse!
   book(limit: Int = 10, skip: Int = 0, _id: String!): Book!
   allAuthors(limit: Int = 10, skip: Int = 0): GetAuthorsPaginatedResponse!
   author(id: String!): Author!
-}
-
-input LoginUserInput {
-  email: String!
-  password: String!
 }
 
 type Mutation {
@@ -78,7 +65,8 @@ type Mutation {
   createAuthor(createAuthorInput: CreateAuthorInput!): Author!
   updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
   removeAuthor(id: String!): Author!
-  login: LoginUserResponse!
+  login(loginUserInput: LoginUserInput!): LoginUserResponse!
+  signup(signupInput: CreateUserInput!): User!
 }
 
 input CreateUserInput {
@@ -122,4 +110,9 @@ input CreateAuthorInput {
 input UpdateAuthorInput {
   name: String
   _id: String!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
 }

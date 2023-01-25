@@ -5,8 +5,6 @@ import { Model, Schema as MongooSchema } from 'mongoose';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { User, UserDocument } from './entities/user.entity';
-import * as bcrypt from 'bcrypt';
-import { LoginUserInput } from './dto/login-user.input';
 
 @Injectable()
 export class UserService {
@@ -17,43 +15,9 @@ export class UserService {
   ) {}
 
   async createUser(createUserInput: CreateUserInput) {
-    // GENERATE HASH PASSWORD TO SAVE
-    const hash = await bcrypt.hash(
-      createUserInput.password,
-      Number(this.configService.get<string>('SALT_ROUND')),
-    );
-
-    const createdUser = new this.userModel({
-      ...createUserInput,
-      password: hash,
-    });
+    const createdUser = new this.userModel(createUserInput);
 
     return createdUser.save();
-  }
-
-  async findOne(email: string) {
-    const user = await this.userModel.findOne({ email });
-    return user;
-  }
-
-  async loginUser(loginInput: LoginUserInput) {
-    const { email, password } = loginInput;
-    const user = await this.userModel.findOne({ email });
-
-    if (!user) {
-      throw new Error('Invalid credentials');
-    }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) {
-      throw new Error('Password or email address incorrect');
-    }
-
-    return {
-      user,
-      authToken: '',
-    };
   }
 
   findAll() {

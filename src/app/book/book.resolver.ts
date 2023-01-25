@@ -6,12 +6,16 @@ import { UpdateBookInput } from './dto/update-book.input';
 import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
 import { GetPaginatedSubDocumentsArgs } from '../common/dto/get-paginated-sub-document.args';
 import { Schema as MongooSchema } from 'mongoose';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from '../auth/jwt-auth.gards';
 
 @Resolver(() => Book)
 export class BookResolver {
   constructor(private readonly bookService: BookService) {}
 
+  // Only connected users with valid jwt tokens must create a book(Authentication)
   @Mutation(() => Book)
+  @UseGuards(JwtAuthGuard)
   createBook(@Args('createBookInput') createBookInput: CreateBookInput) {
     return this.bookService.createBook(createBookInput);
   }
