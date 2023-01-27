@@ -123,4 +123,14 @@ describe('UserService', () => {
       expect(err.response.statusCode).toBe(404);
     }
   });
+
+  it('should not be able to update an non existing user', async () => {
+    try {
+      await service.updateUser(updateUserInput._id, updateUserInput);
+    } catch (err) {
+      expect(err).toBeDefined();
+      expect(err.response).toBeDefined();
+      expect(err.response.statusCode).toBe(404);
+    }
+  });
 });
