@@ -22,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       cors: true,
       introspection: true,
+      cache: 'bounded',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
