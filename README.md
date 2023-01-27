@@ -1,35 +1,27 @@
+# Build a GraphQL API using NestJs and MongoDB - PART 1
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="./static/assets/cover.png" alt="Nest Logo" /></a>
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
 
-> This 
+Are you ready to take your GraphQL development skills to the next level? In this series of four articles, I'll guide you through the process of building a powerful GraphQL API using Nest and MongoDB. You'll learn best practices, and see how to scale your app just as you would in a real-world scenario.
+
+First, we'll kick things off by diving into the fundamentals of Nest, a powerful NodeJS framework. We'll set up the foundation for our final project, and by the end, you'll know how to manually deploy your own sample application.
+
+Next, we'll delve into the world of Test Driven Development (TDD) for GraphQL. You'll see the benefits it brings to the development process and learn how to test your current resolvers and implement new ones using this approach.
+
+In the third installment, we'll explore how to apply Continuous Integration and Continuous Deployment (CI/CD) to Nest and GraphQL apps. We'll create our pipelines and, building off the concepts from the second part, you'll see the true power of this approach in action. Once set up, you won't have to worry as much about delivering to the frontend team, and you'll be able to catch errors even before the app is shipped to client apps.
+
+Finally, in the fourth and final installment, we'll take things up a notch by adding features that will introduce you to the world of micro-services. You'll learn how to break down your monolithic app into smaller, independent micro-services without disrupting any existing functionality. This is the modern approach, saving you from the headache of long, drawn-out migrations. So, let's get started and take your GraphQL development skills to the next level!
+
+[Read the full article]()
 
 ## Installation
 
 ```bash
-$ yarn install
+yarn install
 ```
 
 ## Running the app
@@ -58,16 +50,12 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
+## Say Hi
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Pacifique Linjanja](https://paclinjanja.tech)
+- LinkedIn - [Pacifique Linjanja](https://www.linkedin.com/in/pacifique-linjanja/)
+- Twitter - [@PacifiqueLinja1](https://twitter.com/PacifiqueLinja1)
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).
