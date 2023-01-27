@@ -41,9 +41,7 @@ describe('UserService', () => {
     module = await Test.createTestingModule({
       imports: [
         rootMongooseTestModule(),
-        ConfigModule.forRoot({
-          cache: true,
-        }),
+        ConfigModule.forRoot(),
         MongooseModule.forFeature([
           {
             name: User.name,
