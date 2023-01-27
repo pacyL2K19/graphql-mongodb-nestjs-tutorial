@@ -22,7 +22,7 @@ export class UserService {
 
   findAll() {
     // To implement later
-    return [];
+    return this.userModel.find().skip(0).limit(10);
   }
 
   async findOneByEmail(email: string) {

@@ -21,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
       playground: false,
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       cors: true,
+      introspection: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
