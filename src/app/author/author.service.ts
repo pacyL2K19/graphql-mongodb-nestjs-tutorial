@@ -28,14 +28,16 @@ export class AuthorService {
   }
 
   findAuthorById(id: MongooSchema.Types.ObjectId) {
-    return this.authorModel.findById(id).populate('books');
+    return this.authorModel.findById(id);
   }
 
   updateAuthor(
     id: MongooSchema.Types.ObjectId,
     updateAuthorInput: UpdateAuthorInput,
   ) {
-    return this.authorModel.findOneAndUpdate(updateAuthorInput);
+    return this.authorModel.findOneAndUpdate(id, updateAuthorInput, {
+      new: true,
+    });
   }
 
   remove(id: MongooSchema.Types.ObjectId) {

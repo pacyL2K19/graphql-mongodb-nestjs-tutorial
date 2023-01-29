@@ -52,7 +52,7 @@ export class BookService {
     id: MongooSchema.Types.ObjectId,
     updateBookInput: UpdateBookInput,
   ) {
-    return this.bookModel.findByIdAndUpdate(id, updateBookInput);
+    return this.bookModel.findByIdAndUpdate(id, updateBookInput, { new: true });
   }
 
   removeBook(id: MongooSchema.Types.ObjectId) {
