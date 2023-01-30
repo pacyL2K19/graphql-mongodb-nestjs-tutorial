@@ -7,7 +7,7 @@ import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
 import { GetPaginatedSubDocumentsArgs } from '../common/dto/get-paginated-sub-document.args';
 import { Schema as MongooSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/jwt-auth.gards';
+import { JwtAuthGuard } from '../auth/jwt-auth.guards';
 
 @Resolver(() => Book)
 export class BookResolver {
