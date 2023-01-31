@@ -1,8 +1,8 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooSchema } from 'mongoose';
-import { Author } from 'src/app/author/entities/author.entity';
-import { User } from 'src/app/user/entities/user.entity';
+import { Author } from '../../author/entities/author.entity';
+import { User } from '../../user/entities/user.entity';
 
 @ObjectType()
 @Schema()
