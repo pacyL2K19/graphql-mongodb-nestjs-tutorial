@@ -6,6 +6,7 @@ import { JwtService } from '@nestjs/jwt';
 import { CreateUserInput } from '../user/dto/create-user.input';
 import { ConfigService } from '@nestjs/config';
 import { LoginUserInput } from './dto/login-user.input';
+import { USER_ALREADY_EXIST_EXCEPTION } from '../common/exceptions/user.exceptions';
 
 @Injectable()
 export class AuthService {
@@ -49,7 +50,7 @@ export class AuthService {
     const user = await this.userService.findOneByEmail(payload.email);
 
     if (user) {
-      throw new Error('User already exists, login instead');
+      throw new Error(USER_ALREADY_EXIST_EXCEPTION);
     }
 
     // GENERATE HASH PASSWORD TO SAVE

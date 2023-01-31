@@ -20,9 +20,9 @@ export class UserService {
     return createdUser.save();
   }
 
-  findAll() {
+  findAll(skip = 0, limit = 10) {
     // To implement later
-    return this.userModel.find().skip(0).limit(10);
+    return this.userModel.find().skip(skip).limit(limit);
   }
 
   async findOneByEmail(email: string) {
@@ -33,11 +33,13 @@ export class UserService {
     return this.userModel.findById(id);
   }
 
-  updateUser(
+  async updateUser(
     id: MongooSchema.Types.ObjectId,
     updateUserInput: UpdateUserInput,
   ) {
-    return this.userModel.findByIdAndUpdate(id, updateUserInput, { new: true });
+    return await this.userModel.findByIdAndUpdate(id, updateUserInput, {
+      new: true,
+    });
   }
 
   remove(id: MongooSchema.Types.ObjectId) {

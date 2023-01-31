@@ -7,7 +7,8 @@ import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
 import { GetPaginatedSubDocumentsArgs } from '../common/dto/get-paginated-sub-document.args';
 import { Schema as MongooSchema } from 'mongoose';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/jwt-auth.gards';
+import { JwtAuthGuard } from '../auth/jwt-auth.guards';
+import { BuyBookInput } from './dto/buy-book.input';
 
 @Resolver(() => Book)
 export class BookResolver {
@@ -43,5 +44,11 @@ export class BookResolver {
     @Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId,
   ) {
     return this.bookService.removeBook(id);
+  }
+
+  @Mutation(() => Book)
+  @UseGuards(JwtAuthGuard)
+  buyBook(@Args('buyBookInput') buyBookInput: BuyBookInput) {
+    return this.bookService.buyBook(buyBookInput);
   }
 }

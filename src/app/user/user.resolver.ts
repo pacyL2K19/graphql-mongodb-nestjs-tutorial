@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
@@ -35,7 +35,9 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  removeUser(@Args('id', { type: () => Int }) id: MongooSchema.Types.ObjectId) {
+  removeUser(
+    @Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId,
+  ) {
     return this.userService.remove(id);
   }
 }

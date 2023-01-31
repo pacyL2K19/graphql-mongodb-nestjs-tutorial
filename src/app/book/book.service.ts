@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Schema as MongooSchema } from 'mongoose';
+import { CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION } from '../common/exceptions/user.exceptions';
+import { BuyBookInput } from './dto/buy-book.input';
 import { CreateBookInput } from './dto/create-book.input';
 import { UpdateBookInput } from './dto/update-book.input';
 import { Book, BookDocument } from './entities/book.entity';
@@ -52,10 +54,37 @@ export class BookService {
     id: MongooSchema.Types.ObjectId,
     updateBookInput: UpdateBookInput,
   ) {
-    return this.bookModel.findByIdAndUpdate(id, updateBookInput);
+    return this.bookModel.findByIdAndUpdate(id, updateBookInput, { new: true });
   }
 
   removeBook(id: MongooSchema.Types.ObjectId) {
     return this.bookModel.deleteOne({ _id: id });
+  }
+
+  // BUY BOOK FEATURE
+  async isPurchased(buyBookInput: BuyBookInput) {
+    const books = await this.bookModel.find({
+      'readers._id': buyBookInput.userId,
+    });
+
+    return books.length >= 1;
+  }
+
+  async buyBook(buyBookInput: BuyBookInput) {
+    if (await this.isPurchased(buyBookInput)) {
+      throw new Error(CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION);
+    }
+
+    return this.bookModel
+      .findByIdAndUpdate(
+        buyBookInput.bookId,
+        {
+          $push: {
+            readers: buyBookInput.userId,
+          },
+        },
+        { new: true },
+      )
+      .populate('readers');
   }
 }

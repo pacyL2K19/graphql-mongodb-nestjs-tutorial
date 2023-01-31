@@ -3,7 +3,7 @@ import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 import { CreateUserInput } from '../user/dto/create-user.input';
 import { User } from '../user/entities/user.entity';
 import { AuthService } from './auth.service';
-import { LoginUserResponse } from './dto/login-response';
+import { LoginUserResponse } from './dto/login.response';
 import { LoginUserInput } from './dto/login-user.input';
 import { GqlAuthGuard } from './gql-auth.guards';
 
