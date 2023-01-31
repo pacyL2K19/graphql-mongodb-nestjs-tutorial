@@ -67,7 +67,6 @@ export class BookService {
       'readers._id': buyBookInput.userId,
     });
 
-    // console.log('BOOKS', books);
     return books.length >= 1;
   }
 

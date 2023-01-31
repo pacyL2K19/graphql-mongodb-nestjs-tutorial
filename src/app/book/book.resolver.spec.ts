@@ -6,6 +6,8 @@ import { UpdateBookInput } from './dto/update-book.input';
 import { Schema as MongooSchema } from 'mongoose';
 import * as Chance from 'chance';
 import { createAuthorInput } from '../author/author.service.spec';
+import { createUserInput } from '../user/user.service.spec';
+import { Book } from './entities/book.entity';
 
 const DESCRIPTION_LENGTH = 20;
 
@@ -80,6 +82,12 @@ describe('BookResolver', () => {
             removeBook: jest.fn(() => {
               return {};
             }),
+            buyBook: jest.fn(() => {
+              return {
+                ...createBookInput,
+                readers: [{ ...createUserInput }],
+              };
+            }),
           },
         },
       ],
@@ -146,5 +154,15 @@ describe('BookResolver', () => {
       expect(error.response).toBeDefined();
       expect(error.response.statusCode).toBe(404);
     }
+  });
+
+  it('should allow a user to buy a new book', async () => {
+    const updatedBook: Book = await resolver.buyBook({
+      bookId: updateBookInput._id,
+      userId: new MongooSchema.Types.ObjectId(''),
+    });
+
+    expect(updatedBook.readers.length).toBe(1);
+    expect(updatedBook.readers[0].name).toBe(createUserInput.name);
   });
 });
