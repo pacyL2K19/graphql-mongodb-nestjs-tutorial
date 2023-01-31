@@ -17,9 +17,14 @@ import { Author, AuthorSchema } from '../author/entities/author.entity';
 import { createAuthorInput } from '../author/author.service.spec';
 import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
 import { User, UserSchema } from '../user/entities/user.entity';
+import { UserService } from '../user/user.service';
+import { UserModule } from '../user/user.module';
+import { createUserInput } from '../user/user.service.spec';
+import { CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION } from '../common/exceptions/user.exceptions';
 
 const chance = new Chance();
 let bookId = '';
+let author: Author;
 
 const UPDATED_DESCRIPTION_LENGTH = 25;
 const DESCRIPTION_LENGTH = 20;
@@ -43,15 +48,17 @@ const updateBookInput: UpdateBookInput = {
 describe('BookService', () => {
   let service: BookService;
   let authorService: AuthorService;
+  let userService: UserService;
   let module: TestingModule;
 
   beforeAll(async () => {
     module = await Test.createTestingModule({
-      providers: [BookService, AuthorService],
+      providers: [BookService, AuthorService, AuthorModule],
       imports: [
         rootMongooseTestModule(),
         ConfigModule.forRoot(),
         AuthorModule,
+        UserModule,
         MongooseModule.forFeature([
           {
             name: Book.name,
@@ -71,6 +78,9 @@ describe('BookService', () => {
 
     service = module.get<BookService>(BookService);
     authorService = module.get<AuthorService>(AuthorService);
+    userService = module.get<UserService>(UserService);
+    // We first create a new author, otherwise it will throw an error by using the generated one
+    author = await authorService.create(createAuthorInput);
   });
 
   afterAll(async () => {
@@ -81,8 +91,6 @@ describe('BookService', () => {
   });
 
   it('should create a new book', async () => {
-    // We first create a new author, otherwise it will throw an error by using the generated one
-    const author = await authorService.create(createAuthorInput);
     const book = await service.createBook({
       ...createBookInput,
       author: author._id,
@@ -148,5 +156,54 @@ describe('BookService', () => {
       expect(err.response).toBeDefined();
       expect(err.response.statusCode).toBe(404);
     }
+  });
+
+  describe('User purchase features', () => {
+    let user: User;
+    beforeAll(async () => {
+      // First we create a user who will purchase the book
+      user = await userService.createUser(createUserInput);
+    });
+
+    it('should allow a user to buy one specific book, and be among readers for the book', async () => {
+      const updatedBook: Book = await service.buyBook({
+        bookId: updateBookInput._id,
+        userId: user._id,
+      });
+
+      expect(updatedBook.readers.length).toBe(1);
+      expect(updatedBook.readers[0].name).toBe(user.name);
+    });
+
+    it('should not allow a user to buy more than one copy of the same book', async () => {
+      try {
+        await service.buyBook({
+          bookId: updateBookInput._id,
+          userId: user._id,
+        });
+      } catch (error) {
+        expect(error).toBeDefined();
+        expect(error.message).toBeDefined();
+        expect(error.message).toBe(
+          CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION,
+        );
+      }
+    });
+
+    it('should allow a user to buy more than one different books', async () => {
+      const newBook = await service.createBook({
+        ...createBookInput,
+        author: author._id,
+        isbn: '234ESJJ', // To avoid having the same isbn, violating a unique constraint we put in the schema
+      });
+
+      const updatedBook: Book = await service.buyBook({
+        bookId: newBook._id,
+        userId: user._id,
+      });
+
+      expect(updatedBook.readers.length).toBe(1);
+      expect(updatedBook.readers[0].name).toBe(user.name);
+    });
   });
 });

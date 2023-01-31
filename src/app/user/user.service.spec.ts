@@ -21,14 +21,14 @@ import {
 const chance = new Chance();
 let userId = '';
 
-const createUserInput: CreateUserInput = {
+export const createUserInput: CreateUserInput = {
   name: chance.name(),
   password: 'FakePassword1?',
   address: chance.string({ length: ADDRESS_LENGTH }),
   email: chance.email(),
 };
 
-const updateUserInput: UpdateUserInput = {
+export const updateUserInput: UpdateUserInput = {
   _id: new MongooSchema.Types.ObjectId(''),
   name: chance.name(),
   address: chance.string({ length: UPDATED_ADDRESS_LENGTH }),
