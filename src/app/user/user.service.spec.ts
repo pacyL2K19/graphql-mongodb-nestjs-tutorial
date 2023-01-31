@@ -13,9 +13,10 @@ import { CreateUserInput } from './dto/create-user.input';
 import { GetPaginatedArgs } from '../common/dto/get-paginated.args';
 import { UpdateUserInput } from './dto/update-user.input';
 import { Schema as MongooSchema } from 'mongoose';
-
-const UPDATED_ADDRESS_LENGTH = 15;
-const ADDRESS_LENGTH = 20;
+import {
+  ADDRESS_LENGTH,
+  UPDATED_ADDRESS_LENGTH,
+} from '../common/helpers/user.helper';
 
 const chance = new Chance();
 let userId = '';

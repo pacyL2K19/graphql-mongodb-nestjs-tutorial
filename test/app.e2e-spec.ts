@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app/app.module';
 import {
+  CODE_STATUSES,
   GET_HELLO,
   GET_HELLO_OPERATION_NAME,
   GRAPHQL_ENDPOINT,
@@ -34,7 +35,7 @@ describe('AppResolver (e2e)', () => {
         operationName: GET_HELLO_OPERATION_NAME,
         query: GET_HELLO,
       })
-      .expect(200)
+      .expect(CODE_STATUSES.OK)
       .expect((res) => {
         expect(res.body.data.getHello).toBe(HELL0_WORLD);
       });
