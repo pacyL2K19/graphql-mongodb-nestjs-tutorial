@@ -39,7 +39,8 @@ export class AuthService {
           sub: user._id,
         },
         {
-          secret: this.configService.get<string>('JWT_SECRET'),
+          secret:
+            this.configService.get<string>('JWT_SECRET') || 'testingEnvSecret',
         },
       ),
     };
@@ -56,7 +57,7 @@ export class AuthService {
     // GENERATE HASH PASSWORD TO SAVE
     const hash = await bcrypt.hash(
       payload.password,
-      Number(this.configService.get<string>('SALT_ROUND')),
+      Number(this.configService.get<string>('SALT_ROUND') || '8'),
     );
 
     return this.userService.createUser({ ...payload, password: hash });
