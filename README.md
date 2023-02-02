@@ -1,4 +1,4 @@
-# Build a GraphQL API using NestJs and MongoDB in a modern way - PART 2
+# Build a GraphQL API using NestJs and MongoDB in a modern way - PART 3
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="./static/assets/cover.png" alt="Nest Logo" /></a>
