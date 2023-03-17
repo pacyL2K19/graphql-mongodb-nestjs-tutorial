@@ -1,7 +1,7 @@
 # Build a GraphQL API using NestJs and MongoDB in a modern way - PART 3
 
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="./static/assets/cover.png" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://user-images.githubusercontent.com/61581306/225814520-9c66569b-8e9c-485c-a4a6-667da58cbfcd.jpg" alt="Nest Logo" /></a>
 </p>
 
 ## Description
@@ -16,7 +16,8 @@ In the third installment, we'll explore how to apply Continuous Integration and 
 
 Finally, in the fourth and final installment, we'll take things up a notch by adding features that will introduce you to the world of micro-services. You'll learn how to break down your monolithic app into smaller, independent micro-services without disrupting any existing functionality. This is the modern approach, saving you from the headache of long, drawn-out migrations. So, let's get started and take your GraphQL development skills to the next level!
 
-[Read the full article]()
+[Read the full article - Part 1](https://paclinjanja.hashnode.dev/graphql-api-nestjs-mongodb-a-modern-way-part-1)
+[Read the full article - Part 2](https://paclinjanja.hashnode.dev/build-graphql-api-nestjs-mongodb-a-modern-way-part-2-tdd)
 
 ## Installation
 
@@ -48,6 +49,7 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
+
 ```
 
 ## Say Hi
