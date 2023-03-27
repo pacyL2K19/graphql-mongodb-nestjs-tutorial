@@ -115,7 +115,7 @@ describe('UserService', () => {
 
   it('should receive not found error for getting the deleted user', async () => {
     try {
-      await service.getUserById(updateUserInput._id);
+      await service.getUserById(updateUserInput._id.toString());
     } catch (err) {
       expect(err).toBeDefined();
       expect(err.response).toBeDefined();

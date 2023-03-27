@@ -62,6 +62,7 @@ type Mutation {
   createBook(createBookInput: CreateBookInput!): Book!
   updateBook(updateBookInput: UpdateBookInput!): Book!
   removeBook(id: String!): Book!
+  buyBook(buyBookInput: BuyBookInput!): Book!
   createAuthor(createAuthorInput: CreateAuthorInput!): Author!
   updateAuthor(updateAuthorInput: UpdateAuthorInput!): Author!
   removeAuthor(id: String!): Author!
@@ -101,6 +102,11 @@ input UpdateBookInput {
   isbn: String
   author: String
   _id: String!
+}
+
+input BuyBookInput {
+  userId: String!
+  bookId: String!
 }
 
 input CreateAuthorInput {

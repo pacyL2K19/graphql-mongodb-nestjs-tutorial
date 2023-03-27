@@ -90,7 +90,7 @@ describe('UserResolver', () => {
   });
 
   it('should be able to find one user by id', async () => {
-    const user = await resolver.getUserById(userId);
+    const user = await resolver.getUserById(userId?.toString());
     expect(user).toBeDefined();
     expect(user._id).toBe(userId);
   });

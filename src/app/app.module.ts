@@ -23,6 +23,7 @@ import { AuthModule } from './auth/auth.module';
       cors: true,
       introspection: true,
       cache: 'bounded',
+      // path: `api/v1/graphql`,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

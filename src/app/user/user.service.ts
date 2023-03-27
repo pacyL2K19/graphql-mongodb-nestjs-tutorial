@@ -29,7 +29,7 @@ export class UserService {
     return this.userModel.findOne({ email });
   }
 
-  getUserById(id: MongooSchema.Types.ObjectId) {
+  getUserById(id: string) {
     return this.userModel.findById(id);
   }
 

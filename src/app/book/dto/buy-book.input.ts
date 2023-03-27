@@ -4,11 +4,11 @@ import { Schema as MongooSchema } from 'mongoose';
 
 @InputType()
 export class BuyBookInput {
-  @Field()
+  @Field(() => String)
   @IsMongoId()
   userId: MongooSchema.Types.ObjectId;
 
-  @Field()
+  @Field(() => String)
   @IsMongoId()
   bookId: MongooSchema.Types.ObjectId;
 }
