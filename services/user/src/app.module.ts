@@ -8,12 +8,7 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
-
-import { UserModule } from './user/user.module';
-import { BookModule } from './book/book.module';
-import { AuthorModule } from './author/author.module';
-import { CommonModule } from './common/common.module';
-import { AuthModule } from './auth/auth.module';
+import { UserModule } from './app/user.module';
 
 @Module({
   imports: [
@@ -24,7 +19,10 @@ import { AuthModule } from './auth/auth.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       introspection: true,
       cache: 'bounded',
-      path: `api/v2/graphql`,
+      path: `api/v2/user/graphql`,
+    }),
+    ConfigModule.forRoot({
+      cache: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -37,14 +35,7 @@ import { AuthModule } from './auth/auth.module';
         return options;
       },
     }),
-    ConfigModule.forRoot({
-      cache: true,
-    }),
     UserModule,
-    BookModule,
-    AuthorModule,
-    CommonModule,
-    AuthModule,
   ],
   providers: [AppService, AppResolver],
 })
