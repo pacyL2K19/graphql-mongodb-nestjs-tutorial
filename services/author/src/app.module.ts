@@ -8,7 +8,7 @@ import { MongooseModule, MongooseModuleOptions } from '@nestjs/mongoose';
 
 import { AppResolver } from './app.resolver';
 import { AppService } from './app.service';
-import { UserModule } from './app/user.module';
+import { AuthorModule } from './app/author.module';
 
 @Module({
   imports: [
@@ -35,7 +35,7 @@ import { UserModule } from './app/user.module';
         return options;
       },
     }),
-    UserModule,
+    AuthorModule,
   ],
   providers: [AppService, AppResolver],
 })

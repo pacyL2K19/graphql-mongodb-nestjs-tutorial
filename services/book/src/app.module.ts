@@ -19,7 +19,7 @@ import { BookModule } from './app/book.module';
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
       introspection: true,
       cache: 'bounded',
-      path: `api/v2/book/graphql`,
+      path: `api/v2/graphql`,
     }),
     ConfigModule.forRoot({
       cache: true,
