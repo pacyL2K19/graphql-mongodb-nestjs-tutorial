@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type LoginUserResponse {
+  authToken: String!
+}
+
+type Query {
+  getHello: String!
+}
+
+type Mutation {
+  login(loginUserInput: LoginUserInput!): LoginUserResponse!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
