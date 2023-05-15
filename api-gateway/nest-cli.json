@@ -45,6 +45,33 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "authors": {
+      "type": "application",
+      "root": "apps/authors",
+      "entryFile": "main",
+      "sourceRoot": "apps/authors/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/authors/tsconfig.app.json"
+      }
+    },
+    "auth": {
+      "type": "application",
+      "root": "apps/auth",
+      "entryFile": "main",
+      "sourceRoot": "apps/auth/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/auth/tsconfig.app.json"
+      }
+    },
+    "orders": {
+      "type": "application",
+      "root": "apps/orders",
+      "entryFile": "main",
+      "sourceRoot": "apps/orders/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/orders/tsconfig.app.json"
+      }
     }
   }
 }
