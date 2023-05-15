@@ -24,6 +24,7 @@ specifiers:
   '@typescript-eslint/parser': ^5.0.0
   bcrypt: ^5.1.0
   class-validator: ^0.14.0
+  dotenv: ^16.0.3
   eslint: ^8.0.1
   eslint-config-prettier: ^8.3.0
   eslint-plugin-prettier: ^4.0.0
@@ -58,6 +59,7 @@ dependencies:
   '@nestjs/platform-express': 9.4.0_gqkob5jndcfeb3wjw72wbdwyne
   bcrypt: 5.1.0
   class-validator: 0.14.0
+  dotenv: 16.0.3
   graphql: 16.6.0
   mongoose: 7.1.1
   passport: 0.6.0
