@@ -1,9 +1,1 @@
-import {
-  USER_ALREADY_EXIST_EXCEPTION,
-  CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION,
-} from './user.exceptions';
-
-export default {
-  USER_ALREADY_EXIST_EXCEPTION,
-  CANNOT_PURCHASE_MORE_THAN_ONE_COPY_EXCEPTION,
-};
+export * from './user.exceptions';
