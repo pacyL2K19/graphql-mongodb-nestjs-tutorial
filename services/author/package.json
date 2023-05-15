@@ -73,5 +73,9 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "resolutions": {
+    "graphql": "16.6.0",
+    "**/graphql": "16.6.0"
   }
 }

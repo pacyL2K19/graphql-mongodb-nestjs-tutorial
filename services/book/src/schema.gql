@@ -2,6 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Author {
+  _id: String!
+  books: [Book!]!
+}
+
+type User {
+  _id: String!
+  books: [Book!]!
+}
+
 type Book {
   _id: String!
   title: String!
@@ -9,6 +19,8 @@ type Book {
   price: Float!
   coverImage: String!
   isbn: String!
+  author: Author!
+  readers: [User!]!
 }
 
 type GetBooksPaginatedResponse {

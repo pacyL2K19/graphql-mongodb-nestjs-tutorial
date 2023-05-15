@@ -50,6 +50,18 @@ export class BookService {
       });
   }
 
+  getBooksByAuthorId(authorId: MongooSchema.Types.ObjectId) {
+    return this.bookModel.find({
+      author: authorId,
+    });
+  }
+
+  getBooksByReaderId(authorId: MongooSchema.Types.ObjectId) {
+    return this.bookModel.find({
+      author: authorId,
+    });
+  }
+
   updateBook(
     id: MongooSchema.Types.ObjectId,
     updateBookInput: UpdateBookInput,

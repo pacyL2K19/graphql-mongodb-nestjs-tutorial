@@ -1,8 +1,8 @@
 import { ObjectType, Field, Int, Float } from '@nestjs/graphql';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Schema as MongooSchema } from 'mongoose';
-// import { Author } from '../../author/entities/author.entity';
-// import { User } from '../../user/entities/user.entity';
+import { Author } from './author.entity';
+import { User } from './user.entity';
 
 @ObjectType()
 @Schema()
@@ -31,13 +31,13 @@ export class Book {
   @Prop({ unique: true })
   isbn: string;
 
-  // @Field(() => Author)
-  // @Prop({ type: MongooSchema.Types.ObjectId, ref: 'Author' })
-  // author: Author;
+  @Field(() => Author)
+  @Prop({ type: MongooSchema.Types.ObjectId, ref: 'Author' })
+  author: Author;
 
-  // @Field(() => [User])
-  // @Prop({ type: [{ type: MongooSchema.Types.ObjectId, ref: 'User' }] })
-  // readers: User[];
+  @Field(() => [User])
+  @Prop({ type: [{ type: MongooSchema.Types.ObjectId, ref: 'User' }] })
+  readers: User[];
 }
 
 @ObjectType()

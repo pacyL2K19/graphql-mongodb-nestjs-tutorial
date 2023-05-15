@@ -1,10 +1,10 @@
-import { ObjectType, Field } from '@nestjs/graphql';
+import { ObjectType, Field, Directive } from '@nestjs/graphql';
 import { Document, Schema as MongooSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-// import { Book } from '../../book/entities/book.entity';
 
 @ObjectType()
 @Schema()
+@Directive('@key(fields: "_id")')
 export class User {
   @Field(() => String)
   _id: MongooSchema.Types.ObjectId;
@@ -25,10 +25,6 @@ export class User {
   @Field(() => String)
   @Prop()
   address: string;
-
-  // @Field(() => [Book])
-  // @Prop({ type: [{ type: MongooSchema.Types.ObjectId, ref: 'Book' }] })
-  // books: Book[];
 }
 
 @ObjectType()

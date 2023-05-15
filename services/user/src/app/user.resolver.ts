@@ -1,4 +1,10 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveReference,
+} from '@nestjs/graphql';
 import { UserService } from './user.service';
 import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
@@ -37,5 +43,10 @@ export class UserResolver {
     @Args('id', { type: () => String }) id: MongooSchema.Types.ObjectId,
   ) {
     return this.userService.remove(id);
+  }
+
+  @ResolveReference()
+  resolveReference(reference: { __typename: string; _id: string }) {
+    return this.userService.getUserById(reference._id);
   }
 }
