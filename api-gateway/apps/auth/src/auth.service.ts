@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 import { USER_ALREADY_EXIST_EXCEPTION } from '@app/common/exceptions';
 
 // import { UserService } from 'apps/users/src/users.service';
-import { User } from 'apps/users/src/entities/user.entity';
+// import { User } from 'apps/users/src/entities/user.entity';
 import { CreateUserInput } from 'apps/users/src/dto/create-user.input';
 
 import { LoginUserInput } from './dto/login-user.input';
@@ -32,7 +32,7 @@ export class AuthService {
     return loginUserInput;
   }
 
-  login(user: User) {
+  login(user: any) {
     return {
       user,
       authToken: this.jwtService.sign(

@@ -2,7 +2,7 @@ import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
 
 import { CreateUserInput } from 'apps/users/src/dto/create-user.input';
-import { User } from 'apps/users/src/entities/user.entity';
+// import { User } from 'apps/users/src/entities/user.entity';
 
 import { AuthService } from './auth.service';
 import { LoginUserResponse } from './dto/login.response';
@@ -22,8 +22,8 @@ export class AuthResolver {
     return this.authService.login(context.user);
   }
 
-  @Mutation(() => User)
-  signup(@Args('signupInput') signupInput: CreateUserInput) {
-    return this.authService.signup(signupInput);
-  }
+  // @Mutation(() => User)
+  // signup(@Args('signupInput') signupInput: CreateUserInput) {
+  //   return this.authService.signup(signupInput);
+  // }
 }

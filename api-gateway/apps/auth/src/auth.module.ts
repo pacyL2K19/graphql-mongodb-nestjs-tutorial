@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
-import { UsersModule } from 'apps/users/src/users.module';
+// import { UsersModule } from 'apps/users/src/users.module';
 import { JwtModule, JwtModuleOptions, JwtService } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtStrategy } from './jwt.strategy';
@@ -18,7 +18,7 @@ import { LocalStrategy } from './local.strategy';
   ],
   // We nedd to make sure we've imported the userModule, because we're using it's service
   imports: [
-    UsersModule,
+    // UsersModule,
     PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
